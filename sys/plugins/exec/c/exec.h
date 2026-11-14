@@ -36,8 +36,8 @@
  * basic_exec_xxx          *
  ***************************/
 
-/* Emscripten has POSIX headers but cannot launch native subprocesses. */
-#if !defined(__EMSCRIPTEN__) && (defined __USE_POSIX || defined __unix__ || defined _POSIX_C_SOURCE || (defined(__APPLE__) && defined(__MACH__)))
+/* Web targets have POSIX headers but cannot launch native subprocesses. */
+#if !defined(__EMSCRIPTEN__) && !defined(__wasi__) && (defined __USE_POSIX || defined __unix__ || defined _POSIX_C_SOURCE || (defined(__APPLE__) && defined(__MACH__)))
 
 /*#  include <unistd.h> done in base.h */
 /*#  include <sys/types.h> done in base.h */

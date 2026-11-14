@@ -57,7 +57,10 @@
 #include <stdarg.h>
 #include <limits.h>
 #include <float.h>
-#include <setjmp.h>
+/* WASI requires exception extensions for setjmp; no-rescue programs do not use it. */
+#if !defined(__wasi__) || defined(SE_EXCEPTIONS)
+#  include <setjmp.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
